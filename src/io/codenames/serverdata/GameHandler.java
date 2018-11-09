@@ -1,18 +1,28 @@
-package io.codenames.serverinterfaces;
+package io.codenames.serverdata;
 
-public class GamesHandlerInterface {
+import java.rmi.*;
+import java.rmi.server.*;
 
-    public GamesHandlerInterface() {
+import io.codenames.serverinterfaces.GameHandlerInterface;
+
+public class GameHandler extends UnicastRemoteObject implements GameHandlerInterface {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6002464202108439172L;
+
+	public GameHandler() throws RemoteException {
     	
     }
     /**
      * Implement Singleton
      */
-	private static GamesHandlerInterface single_instance = null;
+	private static GameHandler single_instance = null;
 	
-    public static GamesHandlerInterface getInstance() {
+    public static GameHandler getInstance() throws RemoteException  {
     	if (single_instance == null) 
-            single_instance = new GamesHandlerInterface();  
+            single_instance = new GameHandler();  
         return single_instance; 
     }
   
