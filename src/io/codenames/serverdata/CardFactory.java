@@ -1,4 +1,5 @@
 package io.codenames.serverdata;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -28,7 +29,12 @@ public class CardFactory {
             if(type == 0){
                 return null;
             }else {
-                card = new Card(type, code);
+                try {
+					card = new Card(type, code);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 cardMap.put(code, card);
             }
         }

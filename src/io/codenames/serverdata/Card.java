@@ -1,6 +1,12 @@
 package io.codenames.serverdata;
 
-public class Card {
+import java.rmi.server.UnicastRemoteObject;
+
+import io.codenames.serverinterfaces.CardInterface;
+
+import java.rmi.*;
+
+public class Card extends UnicastRemoteObject implements CardInterface{
 
     private int type;
     private String codeName;
@@ -13,52 +19,30 @@ public class Card {
      * @param codeName
      * @return Card
      */
-    protected Card(int type, String codeName) {
+    protected Card(int type, String codeName) throws RemoteException{
         this.type = type;
         this.codeName = codeName;
     }
 
-    /**
-     * Get type of card
-     *
-     * @return
-     */
+
     public int getType() {
         return type;
     }
 
-    /**
-     * Set type of cards
-     *
-     * @param type
-     */
+ 
     public void setType(int type) {
         this.type = type;
     }
 
-    /**
-     * get codeName of Card
-     *
-     * @return
-     */
+
     public String getCodeName() {
         return codeName;
     }
 
-    /**
-     * Set codeName of card
-     *
-     * @param codeName
-     */
     public void setCodeName(String codeName) {
         this.codeName = codeName;
     }
 
-    /**
-     * check if card is hidden
-     *
-     * @return
-     */
     public boolean isHidden() {
         return hidden;
     }
@@ -72,9 +56,6 @@ public class Card {
         this.hidden = hidden;
     }
 
-    /*
-     * reveal card andSet hidden state to false
-     */
     public void revealCard() {
         setHidden(false);
     }
