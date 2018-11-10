@@ -4,4 +4,5 @@ import java.rmi.*;
 
 public interface GamesHandlerInterface extends Remote{
 
+	
 }
