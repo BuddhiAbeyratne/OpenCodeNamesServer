@@ -5,7 +5,7 @@ import java.rmi.server.*;
 
 import io.codenames.serverinterfaces.PlayersHandlerInterface;
 
-public class PlayersHandler extends UnicastRemoteObject implements PlayersHandlerInterface {
+public class PlayersHandler extends UnicastRemoteObject {
 	
     /**
 	 * 
