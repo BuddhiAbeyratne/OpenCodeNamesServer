@@ -1,20 +1,21 @@
 package io.codenames.serverdata;
 
-import java.rmi.*;
+import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
+
+import java.util.ArrayList;
+
 
 import io.codenames.serverinterfaces.GameInterface;
 
-public class Game extends UnicastRemoteObject implements GameInterface{
+public class Game  implements GameInterface, Serializable {
     private String name;
     private String creator;
     private int seats;
     private int seatsAvailable;
 
     private CardFactory cardfactory= new CardFactory();
-    private static HashMap<Integer, Player> playerMap = new HashMap<Integer, Player>();
+    private static ArrayList<Player> playerMap = new ArrayList<Player>();
 
     
     public Game(String name, String creator, int seats) throws RemoteException {
@@ -27,11 +28,12 @@ public class Game extends UnicastRemoteObject implements GameInterface{
 	public String getName(){
         return name;
     }
-	 
-	 
-	 public HashMap<String,Card> getCards(){
-        return cardfactory.getCardMap();
+
+    @Override
+    public Card getCard(int i) {
+        return cardfactory.getCard(i);
     }
+
 
     public void setName(String name) {
         this.name = name;
