@@ -1,36 +1,46 @@
 package io.codenames.serverdata;
 
-public class Player {
-    private String name;
-    private int numGames;
-    private int cardsReviled;
-    private int correctReviles;
-    private int incorrectReviles;
+import io.codenames.serverinterfaces.PlayerInterface;
 
-    /**
-     * Get player name
-     * @return String
-     */
+import java.io.Serializable;
+
+
+
+public class Player implements PlayerInterface, Serializable {
+    private String name;
+    private String password;
+    private int numGames = 0;
+    private int cardsReviled = 0;
+    private int correctReviles = 0;
+    private int incorrectReviles = 0;
+
+    protected Player(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
 
-    /**
-     * Set player name
-     * @param name Player Name
-     */
+
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Get Number of names played
-     * @return int
-     */
+
     public int getNumGames() {
         return numGames;
     }
 
+    /**
+     * Check if password matches
+     * @param password input password
+     * @return If Password is same as input
+     */
+    public boolean matchPassword(String password){
+        return (this.password.equals(password));
+    }
     /**
      * set number of games
      * @param numGames Number of Games Played
@@ -39,20 +49,16 @@ public class Player {
         this.numGames = numGames;
     }
 
-    /**
-     * Increment number of games played
-     */
+
     public void playedGame() {
         this.numGames++;
     }
 
-    /**
-     * Get number of cards Reviled
-     * @return int
-     */
+
     public int getCardsReviled() {
         return cardsReviled;
     }
+
 
     /**
      * Set number of cards reviled by a player
@@ -62,13 +68,11 @@ public class Player {
         this.cardsReviled = cardsReviled;
     }
 
-    /**
-     * Get correct reveals by player
-     * @return int
-     */
+
     public int getCorrectReviles() {
         return correctReviles;
     }
+
 
     /**
      * Set correct cards reviled
@@ -78,13 +82,11 @@ public class Player {
         this.correctReviles = correctReviles;
     }
 
-    /**
-     * Get incorrect card reviles
-     * @return int
-     */
+
     public int getIncorrectReviles() {
         return incorrectReviles;
     }
+
 
     /**
      * Set Incorrect Revels
