@@ -1,11 +1,12 @@
 package io.codenames.serverdata;
 import java.rmi.RemoteException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Random;
 
 public class CardFactory {
-    private HashMap<String, Card> cardMap = new HashMap<String, Card>();
-
+    private LinkedHashMap<String, Card> cardMap = new LinkedHashMap<String, Card>();
+    private ArrayList<String> cardNameMap = new ArrayList<String>();
     int blueCount = 0;
     int blackCount = 0;
     int redCount = 0;
@@ -22,9 +23,8 @@ public class CardFactory {
 
 
     public Card generateCard(String code) {
-
-        Card card =  cardMap.get(code);
-        if(card ==null){
+        Card card = null;
+        if(!cardNameMap.contains(code)){
             int type = this.randType();
             if(type == 0){
                 return null;
@@ -32,7 +32,6 @@ public class CardFactory {
                 try {
 					card = new Card(type, code);
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
                 cardMap.put(code, card);
@@ -42,7 +41,12 @@ public class CardFactory {
 
     }
 
-    public HashMap<String, Card> getCardMap() {
+    protected Card getCard(int i){
+        return cardMap.get(cardNameMap.get(i));
+    }
+
+
+    public LinkedHashMap<String, Card> getCardMap() {
         return cardMap;
     }
 
