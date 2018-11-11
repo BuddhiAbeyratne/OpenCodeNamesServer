@@ -1,12 +1,13 @@
 package io.codenames.serverdata;
 
+import java.io.Serializable;
 import java.rmi.server.UnicastRemoteObject;
 
 import io.codenames.serverinterfaces.CardInterface;
 
 import java.rmi.*;
 
-public class Card extends UnicastRemoteObject implements CardInterface{
+public class Card implements CardInterface, Serializable {
 
     private int type;
     private String codeName;
