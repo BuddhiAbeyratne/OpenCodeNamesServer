@@ -1,10 +1,8 @@
 package io.codenames.serverinterfaces;
 
-import java.util.HashMap;
-
 import io.codenames.serverdata.Card;
-import io.codenames.serverdata.CardFactory;
-import io.codenames.serverdata.Player;
+
+import java.util.HashMap;
 
 import java.rmi.*;
 
@@ -16,10 +14,10 @@ public interface GameInterface extends Remote{
 	     */
 	    String getName();
 	    /**
-	     * Gets Game Cards
-	     * @return ArrayList<String, Card> CardList
+	     * Gets Game Cards at index
+	     * @return  Card
 	     */
-	    HashMap<String,Card> getCards();
+	    Card getCard(int i);
 	    /**
 	     * Set Game Name
 	     * @return game name
