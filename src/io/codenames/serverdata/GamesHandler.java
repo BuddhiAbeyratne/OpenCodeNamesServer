@@ -26,12 +26,12 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
         return single_instance; 
     }
 
-	public boolean createGame(String gameName, String createrName, int playerCount) {
+	public boolean createGame(String gameName, String createrName, int playerCount) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean joinGame(String gameName, String playerName) {
+	public boolean joinGame(String gameName, String playerName) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -41,17 +41,17 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
 		return null;
 	}
 
-	public boolean revealCard(String gameName, String playerName, int i) {
+	public boolean revealCard(String gameName, String playerName, int i) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean placeChatMessage(String gameName, String platerName, String message) {
+	public boolean placeChatMessage(String gameName, String platerName, String message) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean placeHintMessage(String gameName, String playerName, String message) {
+	public boolean placeHintMessage(String gameName, String playerName, String message) throws RemoteException{
 		// TODO Auto-generated method stub
 		return false;
 	}
