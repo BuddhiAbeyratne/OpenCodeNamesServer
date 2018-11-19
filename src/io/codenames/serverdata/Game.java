@@ -41,7 +41,7 @@ public class Game  implements GameInterface, Serializable {
         return name;
     }
 
-    @Override
+
     public Card getCard(int i) {
         return cardfactory.getCard(i);
     }
