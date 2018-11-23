@@ -34,7 +34,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     }
 
 
-    @Override
+  
     public String createGame(String gameName, String creatorName, int numPlayers) {
         Game game = new Game(gameName,creatorName,numPlayers);
         if(gameList.containsKey(game.getGameID())){
@@ -46,7 +46,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
         return game.getGameID();
     }
 
-    @Override
+    
     public boolean joinGameQueue(String gameID, String playerName) throws RemoteException {
         if(gameList.containsKey(gameID)){
             Game game = gameList.get(gameID);
@@ -71,7 +71,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
         return false;
     }
 
-    @Override
+    
     public boolean leaveGameQueue(String gameID, String playerName) throws RemoteException {
         if(gameList.containsKey(gameID)){
             Game game = gameList.get(gameID);
@@ -89,7 +89,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
         return false;
     }
 
-    @Override
+  
     public LinkedHashMap<String, HashMap<String,String>> getGames() throws RemoteException {
         LinkedHashMap<String,HashMap<String,String>> games = new LinkedHashMap<String,HashMap<String,String>>();
         Iterator<Game> listIt = gameList.values().iterator();
@@ -106,7 +106,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
         return games;
     }
 
-    @Override
+    
     public boolean cardSelected(String gameID, int cardID, String playerName) throws RemoteException{
         return false;
     }
