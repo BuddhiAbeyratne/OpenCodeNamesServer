@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
+import io.codenames.clientinterfaces.ClientCommandInvokerInterface;
 import io.codenames.serverinterfaces.GamesHandlerInterface;
 
 
@@ -56,11 +57,12 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     }
 
     
-    public boolean joinGameQueue(String gameID, String playerName) throws RemoteException {
+    public boolean joinGameQueue(String gameID, String playerName,  ClientCommandInvokerInterface client) throws RemoteException {
         if(gameList.containsKey(gameID)){
             Game game = gameList.get(gameID);
             PlayersHandler playersHandler= PlayersHandler.getInstance();
             Player player = playersHandler.getPlayer(playerName);
+            player.setClientCallBackInterface(client);
             if(player!=null && game.addPlayer(player)){
                 System.out.println("Player "+playerName +" joined");
                 if(game.getSeatsAvailable()==0){

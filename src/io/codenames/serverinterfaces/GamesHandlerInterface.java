@@ -4,11 +4,13 @@ import java.rmi.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import io.codenames.clientinterfaces.ClientCommandInvokerInterface;
+
 public interface GamesHandlerInterface extends Remote{
 
     String createGame(String gameName, String creatorName, int numPlayers) throws RemoteException;
 
-	boolean joinGameQueue(String gameName, String playerName) throws RemoteException;
+	boolean joinGameQueue(String gameName, String playerName, ClientCommandInvokerInterface client ) throws RemoteException;
 
     boolean leaveGameQueue(String gameID, String playerName) throws RemoteException;
 
