@@ -13,6 +13,7 @@ import io.codenames.serverinterfaces.GamesHandlerInterface;
 public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInterface {
 
     private static LinkedHashMap<String, Game> gameList = new LinkedHashMap<String, Game>();
+    private static LinkedHashMap<String,HashMap<String,String>> viewablegamewue = new LinkedHashMap<String,HashMap<String,String>>();
     private static LinkedHashMap<String, Game> runningGames =  new LinkedHashMap<String, Game>();
      /**
 	 * 
@@ -22,6 +23,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
 	private GamesHandler() throws RemoteException {
     	
     }
+	
     /**
      * Implement Singleton
      */
@@ -41,7 +43,14 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
             System.out.println("Game Creation Failed");
             return null;
         }
+        
         gameList.put(game.getGameID(), game);
+        HashMap<String,String> gameHM = new HashMap<String,String>();
+        gameHM.put("name",game.getName());
+        gameHM.put("creator",game.getCreator());
+        gameHM.put("seats",Integer.toString(game.getSeats()));
+        gameHM.put("gameID",game.getGameID());
+        viewablegamewue.put(game.getGameID(),gameHM);
         System.out.println("New Game Created" + game.getGameID());
         return game.getGameID();
     }
@@ -58,11 +67,14 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
                     /**
                      * Start Game
                      */
+                	
                     System.out.println("Game "+gameID+" Started");
                     gameList.remove(gameID);
+                    viewablegamewue.remove(gameID);
                     runningGames.put(gameID,game);
 
                 }
+                
                 return true;
             }
 
@@ -91,25 +103,34 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
 
   
     public LinkedHashMap<String, HashMap<String,String>> getGames() throws RemoteException {
-        LinkedHashMap<String,HashMap<String,String>> games = new LinkedHashMap<String,HashMap<String,String>>();
-        Iterator<Game> listIt = gameList.values().iterator();
-        while (listIt.hasNext())
-        {
-            Game itGame = listIt.next();
-            HashMap<String,String> game = new HashMap<String,String>();
-            game.put("name",itGame.getName());
-            game.put("creator",itGame.getCreator());
-            game.put("seats",Integer.toString(itGame.getSeats()));
-            game.put("gameID",itGame.getGameID());
-            games.put(itGame.getGameID(),game);
-        }
-        return games;
+        return this.viewablegamewue;
     }
 
     
     public boolean cardSelected(String gameID, int cardID, String playerName) throws RemoteException{
         return false;
     }
+
+
+
+	public String getCodeNameOfCard(String gameName, int i) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	public boolean placeChatMessage(String gameName, String platerName, String message) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	public boolean placeHintMessage(String gameName, String playerName, String message) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 }
