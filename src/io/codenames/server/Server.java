@@ -29,7 +29,13 @@ public class Server {
              */
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public void run() {
-                    playershandler.savePlayerList();
+                    PlayersHandler playershandler = null;
+                    try {
+                        playershandler = PlayersHandler.getInstance();
+                        playershandler.savePlayerList();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         } catch (RemoteException e) {
