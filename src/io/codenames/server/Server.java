@@ -13,13 +13,25 @@ import java.rmi.RemoteException;
 public class Server {
 
     public static void main(String argv[]){
+        /**
+         * Load instances
+         */
         WordList.getInstance();
         System.out.println("WordList Handler Initialised");
         try {
+            PlayersHandler playershandler = PlayersHandler.getInstance();
             Naming.rebind("rmi://localhost/GamesHandler", GamesHandler.getInstance());
             System.out.println("Game Handler Initialised");
-            Naming.rebind("rmi://localhost/PlayersHandler", PlayersHandler.getInstance());
+            Naming.rebind("rmi://localhost/PlayersHandler", playershandler);
             System.out.println("Game Handler Initialised");
+            /**
+             * Create Exit hook
+             */
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                public void run() {
+                    playershandler.savePlayerList();
+                }
+            });
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
