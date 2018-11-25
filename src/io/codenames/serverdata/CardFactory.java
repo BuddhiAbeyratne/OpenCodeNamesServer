@@ -12,6 +12,7 @@ public class CardFactory {
     int redCount = 0;
     int neutralCount = 0;
 
+
     public CardFactory() {
         Card card;
         do {
@@ -34,6 +35,7 @@ public class CardFactory {
 				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
+				cardNameMap.add(code);
                 cardMap.put(code, card);
             }
         }
@@ -83,5 +85,10 @@ public class CardFactory {
         }
 
         return type;
+    }
+
+
+    public ArrayList<String> getCardsArray() {
+        return cardNameMap;
     }
 }
