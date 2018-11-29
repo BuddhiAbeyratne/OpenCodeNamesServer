@@ -128,7 +128,6 @@ public class Game  implements GameInterface, Serializable {
     
     protected boolean startGame(){
     	for (Player player: playerMap ) {
-    		System.out.println(player.getName());
     	   try {
 			if(!player.getClientCallBackInterface().startGame() ) {
 				   return false;
