@@ -19,7 +19,7 @@ public class Game  implements GameInterface, Serializable {
     private int team1;
     private int team2;
     private int team1SpyMasterIndex;
-    private int team2SpyMasterInxex;
+    private int team2SpyMasterIndex;
 
     private CardFactory cardfactory= new CardFactory();
     private ArrayList<PlayerProxy> playerMap = new ArrayList<PlayerProxy>();
@@ -153,7 +153,7 @@ public class Game  implements GameInterface, Serializable {
                 t1i++;
             }else{
                 player.setTeam(team1=2);
-                if(t1i==team2SpyMasterInxex){
+                if(t2i==team2SpyMasterIndex){
                     player.setRole(1);
                 }else{
                     player.setRole(0);
@@ -184,8 +184,8 @@ public class Game  implements GameInterface, Serializable {
 
     protected void genarateRole(){
         Random rn = new Random();
-        int team1SpyMasterIndex = rn.nextInt(seats/2);
-        int team2SpyMasterIndex = rn.nextInt(seats/2);
+        team1SpyMasterIndex = rn.nextInt(seats/2);
+        team2SpyMasterIndex = rn.nextInt(seats/2);
     }
 
 }
