@@ -16,8 +16,7 @@ public class Player implements PlayerInterface, Serializable {
     private int incorrectReviles = 0;
     private int deathCards = 0;
     private int gamesWon = 0;
-    
-    private ClientCommandInvokerInterface clientCallBackInterface;
+
 
     protected Player(String name, String password) {
         this.name = name;
@@ -131,14 +130,6 @@ public class Player implements PlayerInterface, Serializable {
 	 */
 	protected void setGamesWon(int gamesWon) {
 		this.gamesWon = gamesWon;
-	}
-	
-    protected ClientCommandInvokerInterface getClientCallBackInterface() {
-		return clientCallBackInterface;
-	}
-
-	protected void setClientCallBackInterface(ClientCommandInvokerInterface clientCallBackInterface) {
-		this.clientCallBackInterface = clientCallBackInterface;
 	}
  
 
