@@ -17,22 +17,22 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     private static LinkedHashMap<String, Game> gameList = new LinkedHashMap<String, Game>();
     private static LinkedHashMap<String,HashMap<String,String>> viewablegamewue = new LinkedHashMap<String,HashMap<String,String>>();
     private static LinkedHashMap<String, Game> runningGames =  new LinkedHashMap<String, Game>();
-     /**
-	 *
-	 */
-	private static final long serialVersionUID = -6002464202108439172L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -6002464202108439172L;
 
-	private GamesHandler() throws RemoteException {
+    private GamesHandler() throws RemoteException {
 
     }
 
     /**
      * Implement Singleton
      */
-	private static GamesHandler single_instance = null;
+    private static GamesHandler single_instance = null;
 
     public static GamesHandler getInstance() throws RemoteException  {
-    	if (single_instance == null)
+        if (single_instance == null)
             single_instance = new GamesHandler();
         return single_instance;
     }
@@ -63,8 +63,9 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
             Game game = gameList.get(gameID);
             PlayersHandler playersHandler= PlayersHandler.getInstance();
             Player player = playersHandler.getPlayer(playerName);
-            player.setClientCallBackInterface(client);
-            if(player!=null && game.addPlayer(player)){
+            PlayerProxy tmpPlayer = new PlayerProxy(player);
+            tmpPlayer.setClientCallBackInterface(client);
+            if(player!=null && game.addPlayer(tmpPlayer)){
                 System.out.println("Player "+playerName +" joined");
                 if(game.getSeatsAvailable()==0 && game.startGame()){
                     /**
@@ -92,8 +93,9 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
             Game game = gameList.get(gameID);
             PlayersHandler playersHandler= PlayersHandler.getInstance();
             Player player = playersHandler.getPlayer(playerName);
+            PlayerProxy tmpPlayer = new PlayerProxy(player);
             if(player!=null){
-                if(game.removePlayer(player)){
+                if(game.removePlayer(tmpPlayer)){
                     System.out.println("Player "+playerName+" left game");
                     return true;
                 }
@@ -116,18 +118,16 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
 
 
 
-	public String getCodeNameOfCard(String gameName, int i) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getCodeNameOfCard(String gameName, int i) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-
+    @Override
     public ArrayList<String> getCardsArray(String gameID, String playerName) throws RemoteException {
         if(runningGames.containsKey(gameID)){
             Game game = runningGames.get(gameID);
-            PlayersHandler playersHandler= PlayersHandler.getInstance();
-            Player player = playersHandler.getPlayer(playerName);
-            if(game.playerExists(player)){
+            if(game.playerExists(playerName)){
                 return game.getCardsArray();
             }
         }
@@ -137,16 +137,16 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
 
 
     public boolean placeChatMessage(String gameName, String platerName, String message) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 
 
-	public boolean placeHintMessage(String gameName, String playerName, String message) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public boolean placeHintMessage(String gameName, String playerName, String message) throws RemoteException {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 
 }
