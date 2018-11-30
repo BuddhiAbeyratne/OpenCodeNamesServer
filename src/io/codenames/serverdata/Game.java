@@ -216,20 +216,20 @@ public class Game  implements GameInterface, Serializable {
         }
     }
 
-    protected boolean revealCard(int tearnCount, String code, String playerName){
-        if(this.playerExists(playerName) && this.turnMatches(tearnCount, playerName) && cardfactory.revealCard(code)){
+    protected boolean revealCard(int turnCount, String code, String playerName){
+        if(this.playerExists(playerName) && this.turnMatches(turnCount, playerName) && cardfactory.revealCard(code)){
             Card card = this.getCard(code);
             int type = card.getType();
             if(type == this.turn){
                 incrimentTurnCount();
-                new java.util.Timer().schedule(new CardRevealedCallbackTask(code,false,players),1000);
+                new java.util.Timer().schedule(new CardRevealedCallbackTask(code,false,players),20);
             }else if(type == 3 ){
                 gameOver();
                 // TODO Auto-generated DeathCard Revealed Callback
             }else{
                 incrimentTurnCount();
                 passTurn();
-                new java.util.Timer().schedule(new CardRevealedCallbackTask(code,true,players),1000);
+                new java.util.Timer().schedule(new CardRevealedCallbackTask(code,true,players),20);
             }
 
             return true;
