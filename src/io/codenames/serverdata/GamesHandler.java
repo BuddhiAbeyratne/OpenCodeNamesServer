@@ -161,6 +161,17 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     }
 
 
+    public int getTypeOfCardInGame(String gameID, String code, String playerName) throws RemoteException {
+        if(runningGames.containsKey(gameID)){
+            Game game = runningGames.get(gameID);
+            if(game.playerExists(playerName)){
+                return game.getTypeOfCard(code);
+            }
+        }
+        System.out.println("getCardsArray: "+gameID+" Game not found or Malicious call Found");
+        return -1;
+    }
+
 
     public String getCodeNameOfCard(String gameName, int i) throws RemoteException {
         // TODO Auto-generated method stub

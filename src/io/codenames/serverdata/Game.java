@@ -241,6 +241,10 @@ public class Game  implements GameInterface, Serializable {
         return false;
     }
 
+    protected int getTypeOfCard(String card){
+        return cardfactory.getTypeOfCard(card);
+    }
+
     protected int getTeamOfPlayerInGame(String playerName){
         return this.players.get(playerName).getTeam();
     }
