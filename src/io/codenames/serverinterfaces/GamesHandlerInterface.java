@@ -17,7 +17,7 @@ public interface GamesHandlerInterface extends Remote{
 
     LinkedHashMap<String, HashMap<String,String>> getGames() throws RemoteException;
 
-	String getCodeNameOfCard(String gameID, int i) throws RemoteException;
+	String getCodeNameOfCard(String gameID, String playerName, int i) throws RemoteException;
 
 	ArrayList<String> getCardsArray(String gameID, String playerName) throws RemoteException ;
 

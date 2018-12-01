@@ -173,8 +173,23 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     }
 
 
-    public String getCodeNameOfCard(String gameName, int i) throws RemoteException {
-        // TODO Auto-generated method stub
+    public void passTurnInGame(String gameID, String playerName, int turnCount) throws RemoteException {
+        if(runningGames.containsKey(gameID)){
+            Game game = runningGames.get(gameID);
+            if(game.turnMatches(turnCount,playerName)){
+                game.passTurn(true);
+            }
+        }
+    }
+
+
+    public String getCodeNameOfCard(String gameID, String playerName, int i) throws RemoteException {
+        if(runningGames.containsKey(gameID)){
+            Game game = runningGames.get(gameID);
+            if(game.playerExists(playerName)){
+                return game.getCard(i).getCodeName();
+            }
+        }
         return null;
     }
 
