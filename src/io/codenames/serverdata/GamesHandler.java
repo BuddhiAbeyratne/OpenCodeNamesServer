@@ -219,32 +219,26 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     }
 
 	public int getAvgNumGames() throws RemoteException {
-		// TODO Auto-generated method stub
 		return avgNumGames;
 	}
 
 	public int getAvgCardsReviled() throws RemoteException {
-		// TODO Auto-generated method stub
 		return avgCardsReviled;
 	}
 
 	public int getAvgCorrectReviles() throws RemoteException {
-		// TODO Auto-generated method stub
 		return avgCorrectReviles;
 	}
 
 	public int getAvgDeathCardReviles() throws RemoteException {
-		// TODO Auto-generated method stub
 		return avgDeathCards;
 	}
 
 	public int getAvgIncorrectReviles() throws RemoteException {
-		// TODO Auto-generated method stub
 		return avgIncorrectReviles;
 	}
 
 	public int getAvgGamesWon() throws RemoteException {
-		// TODO Auto-generated method stub
 		return avgGamesWon;
 	}
 
@@ -282,7 +276,6 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
         return -1;
     }
 
-    @Override
     public int getRoleOfPlayerInGame(String gameID, String playerName) throws RemoteException {
         if(runningGames.containsKey(gameID)){
             Game game = runningGames.get(gameID);
