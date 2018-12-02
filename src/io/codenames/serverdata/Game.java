@@ -24,8 +24,8 @@ public class Game  implements GameInterface, Serializable {
     private int team2SpyMasterIndex;
     private int turnCount=1;
     private int turn = 0;
-    private boolean gameOver;
-    private boolean gameStarted;
+    private boolean gameOver = false;
+    private boolean gameStarted = false;
 
     private CardFactory cardfactory= new CardFactory();
     private Map<String, PlayerProxy> players= new LinkedHashMap<String, PlayerProxy>();
@@ -126,8 +126,9 @@ public class Game  implements GameInterface, Serializable {
         return gameOver;
     }
 
-    protected void gameOver() {
-        this.gameOver = false;
+    protected void gameOver(boolean byDeathCard) {
+        new java.util.Timer().schedule(new WinLossCallbackTask(turn,byDeathCard,players),20);
+        this.gameOver = true;
     }
 
     public boolean isGameStarted() {
