@@ -261,7 +261,7 @@ public class Game  implements GameInterface, Serializable {
     }
     protected void chooseTeamOrder(){
         Random rn = new Random();
-        int team1 = rn.nextInt(2);
+        team1 = rn.nextInt(2);
         if(team1==0)
             team2=1;
         else
