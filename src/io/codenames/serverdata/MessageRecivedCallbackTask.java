@@ -28,7 +28,7 @@ public class MessageRecivedCallbackTask extends TimerTask {
                 if(isSpyMaster)
                     player.getClientCallBackInterface().reciveHint(message, playerName,team);
                 else
-                    player.getClientCallBackInterface().reciveGameMessage(message, playerName,team);
+                    player.getClientCallBackInterface().reciveMessageBroadCast(message, playerName,team);
                 System.out.println(player.getName()+ " updated on message:" + message + "by"+playerName+" with isSpyMaster : "+ isSpyMaster);
             } catch (RemoteException e) {
             	new java.util.Timer().schedule(new PlayerDroppedCallbackTask(players),20);
