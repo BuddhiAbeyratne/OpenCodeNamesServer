@@ -226,8 +226,11 @@ public class Game  implements GameInterface, Serializable {
                 new java.util.Timer().schedule(new CardRevealedCallbackTask(code,false,players),20);
             }else if(type == 3 ){
             	System.out.println("revealCard: gameID- "+this.getGameID()+" Ended Due to death card");
-                gameOver();
-                // TODO Auto-generated DeathCard Revealed Callback
+                incrimentTurnCount();
+                incrimentTurnCount();
+            	new java.util.Timer().schedule(new CardRevealedCallbackTask(code,false,players),20);
+                gameOver(true);
+
             }else{
             	System.out.println("revealCard: gameID- "+this.getGameID()+" continues with turn changed due to netural or oppornent card ");
                 passTurn(false);
