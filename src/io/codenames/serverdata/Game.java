@@ -216,6 +216,15 @@ public class Game  implements GameInterface, Serializable {
             new java.util.Timer().schedule(new TurnPassedCallbackTask(players),20);
     }
 
+    public boolean placeChatMessage(String message, String playerName){
+        if(this.playerExists(playerName)){
+            PlayerProxy player = players.get(playerName);
+            boolean isSpyMaster = (player.getRole()==1);
+            new java.util.Timer().schedule(new MessageRecivedCallbackTask(message,isSpyMaster,playerName,player.getTeam(),players),20);
+            return true;
+        }
+        return false;
+    }
 
     protected boolean revealCard(int turnCount, String code, String playerName){
         if(this.playerExists(playerName) && this.turnMatches(turnCount, playerName) && cardfactory.revealCard(code)){
