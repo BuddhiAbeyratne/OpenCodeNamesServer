@@ -19,7 +19,8 @@ public class TurnPassedCallbackTask extends TimerTask {
                 PlayerProxy player = entry.getValue();
                 player.getClientCallBackInterface().turnPassed();
             } catch (RemoteException e) {
-                e.printStackTrace();
+            	new java.util.Timer().schedule(new PlayerDroppedCallbackTask(players),20);
+            	break;
             }
         }
     }
