@@ -24,7 +24,7 @@ public class CardRevealedCallbackTask extends TimerTask {
             try {
                 PlayerProxy player = entry.getValue();
                 player.getClientCallBackInterface().cardOpened(code, turnChanged);
-                System.out.println(player.getName()+ " " + code + " "+ turnChanged);
+                System.out.println(player.getName()+ " updated on :" + code + " click with turnChanged : "+ turnChanged);
             } catch (RemoteException e) {
             	new java.util.Timer().schedule(new PlayerDroppedCallbackTask(players),20);
             	break;
