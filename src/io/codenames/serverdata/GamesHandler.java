@@ -210,9 +210,15 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
     }
 
 
-    public boolean placeChatMessage(String gameName, String platerName, String message) throws RemoteException {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean placeChatMessage(String gameID, String playerName, String message) throws RemoteException {
+        if(runningGames.containsKey(gameID)){
+            Game game = runningGames.get(gameID);
+            if(game.playerExists(playerName)){
+                return game.placeChatMessage(message,playerName);
+            }
+        }
+        System.out.println("getCardsArray: Game "+gameID+"Not Found");
+        return true;
     }
 
 
