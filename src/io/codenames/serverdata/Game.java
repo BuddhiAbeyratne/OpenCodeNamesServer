@@ -26,7 +26,8 @@ public class Game  implements GameInterface, Serializable {
     private int turn = 0;
     private boolean gameOver = false;
     private boolean gameStarted = false;
-
+    private int redOpenCount = 0;
+    private int blueOpenCount = 0;
     private CardFactory cardfactory= new CardFactory();
     private Map<String, PlayerProxy> players= new LinkedHashMap<String, PlayerProxy>();
 
@@ -248,7 +249,17 @@ public class Game  implements GameInterface, Serializable {
                 passTurn(false);
                 new java.util.Timer().schedule(new CardRevealedCallbackTask(code,true,players),20);
             }
-
+            if(type!=3) {
+            	if(type==0) {
+            		this.redOpenCount++;
+            	}else if(type==1){
+            		this.blueOpenCount++;
+            	}
+            	if(this.redOpenCount>=8 || this.blueOpenCount>=8) {
+            		this.gameOver(false);
+            	}
+            	System.out.println(type+" "+redOpenCount+" "+blueOpenCount);
+            }
             return true;
         }
         return false;
