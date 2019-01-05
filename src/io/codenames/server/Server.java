@@ -32,9 +32,12 @@ public class Server {
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public void run() {
                     PlayersHandler playershandler = null;
+                    GamesHandler gameshandler = null;
                     try {
                         playershandler = PlayersHandler.getInstance();
                         playershandler.savePlayerList();
+                        gameshandler= GamesHandler.getInstance();
+                        gameshandler.saveGameData();
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
