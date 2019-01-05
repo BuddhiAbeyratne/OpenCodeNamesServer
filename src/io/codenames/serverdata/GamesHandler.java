@@ -50,7 +50,7 @@ public class GamesHandler extends UnicastRemoteObject implements GamesHandlerInt
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 @SuppressWarnings("unchecked")
 				HashMap<String, String> retriveGameData =  (HashMap<String, String>) ois.readObject();
-                this.numGames = Integer.parseInt(retriveGameData.get("avgNumGames"));
+                this.numGames = Integer.parseInt(retriveGameData.get("numGames"));
                 this.numberOfPlayers = Integer.parseInt(retriveGameData.get("numberOfPlayers"));
             	this.avgCardsReviled = Float.parseFloat(retriveGameData.get("avgCardsReviled"));
                 this.avgCorrectReviles = Float.parseFloat(retriveGameData.get("avgCorrectReviles"));
